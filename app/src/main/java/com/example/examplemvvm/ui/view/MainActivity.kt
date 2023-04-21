@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        quoteViewModel.onCreate()
+
         /* Lo que este dentro de las llaves esta conectado a LiveData,
         por ejemplo una nueva cita se va a ejecutar el seteo la cita en la activity*/
         quoteViewModel.quoteModel.observe(this, Observer {
