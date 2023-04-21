@@ -16,6 +16,6 @@ class QuoteRespository {
 }
 /*
 La primera vez que se llame al QuoteRepository -> va a llamar al QuoteService
-QuoteService -> hara una llamada al ApiClient,va a recuperar ese listado de quotes y se los devuelve al QuoteService
+QuoteService -> hara una llamada al ApiClient a Retrofit que va a devolver ese listado de quotes y se los devuelve al QuoteService
 Quote Service ->se los devuelve al QuoteRespository
 */
