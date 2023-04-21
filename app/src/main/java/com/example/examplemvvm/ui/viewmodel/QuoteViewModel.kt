@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.examplemvvm.data.model.QuoteModel
-import com.example.examplemvvm.data.model.QuoteProvider
 import com.example.examplemvvm.domain.GetQuotesUseCase
+import com.example.examplemvvm.domain.GetRandomQuoteUseCase
 import kotlinx.coroutines.launch
 
 class QuoteViewModel :ViewModel(){
@@ -14,6 +14,7 @@ class QuoteViewModel :ViewModel(){
     val isLoading = MutableLiveData<Boolean>()
 
     var getQuotesUseCase = GetQuotesUseCase()
+    var getRandomQuotesUseCase = GetRandomQuoteUseCase()
 
     fun onCreate() {
         viewModelScope.launch {
@@ -34,10 +35,17 @@ class QuoteViewModel :ViewModel(){
     QuoteService -> hara una llamada al ApiClient a Retrofit que va a devolver ese listado de quotes y se los devuelve al QuoteService
     Quote Service ->se los devuelve al QuoteRespository
     */
+
     fun randomQuote(){
-//        val currentQuote: QuoteModel = QuoteProvider.random()
-//        quoteModel.postValue((currentQuote))
+        isLoading.postValue(true)
+        val quote: QuoteModel?= getRandomQuotesUseCase()
+        if(quote!=null){
+            quoteModel.postValue(quote)
+        }
+        isLoading.postValue(false)
     }
 
 
 }
+
+
