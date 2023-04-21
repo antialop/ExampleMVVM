@@ -3,6 +3,7 @@ package com.example.examplemvvm.ui.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.example.examplemvvm.databinding.ActivityMainBinding
 import com.example.examplemvvm.ui.viewmodel.QuoteViewModel
@@ -17,12 +18,19 @@ class MainActivity : AppCompatActivity() {
 
         quoteViewModel.onCreate()
 
+        //PATRON OBSERVE A TRAVES DE LIVE DATA
         /* Lo que este dentro de las llaves esta conectado a LiveData,
         por ejemplo una nueva cita se va a ejecutar el seteo la cita en la activity*/
         quoteViewModel.quoteModel.observe(this, Observer {
             binding.tvQuote.text = it.quote
             binding.tvAuthor.text = it.author
         })
+
+        quoteViewModel.isLoading.observe(this,Observer{
+            binding.progress.isVisible = it
+        })
+
+
         binding.viewContainer.setOnClickListener {
             quoteViewModel.randomQuote()
         }

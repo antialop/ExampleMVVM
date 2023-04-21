@@ -11,14 +11,18 @@ import kotlinx.coroutines.launch
 class QuoteViewModel :ViewModel(){
     //quien pone las citas en la interfaz del usuario
     val quoteModel = MutableLiveData<QuoteModel>()
+    val isLoading = MutableLiveData<Boolean>()
+
     var getQuotesUseCase = GetQuotesUseCase()
 
     fun onCreate() {
         viewModelScope.launch {
+            isLoading.postValue((true))
             val result: List<QuoteModel>? = getQuotesUseCase()
             if(!result.isNullOrEmpty()){
                 //Esto es para iniciar la aplicación
                 quoteModel.postValue(result[0])
+                isLoading.postValue((false))
             }
         }
     }
