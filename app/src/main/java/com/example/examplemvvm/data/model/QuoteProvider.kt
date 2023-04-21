@@ -1,4 +1,4 @@
-package com.example.examplemvvm.model
+package com.example.examplemvvm.data.model
 
 class QuoteProvider {
     companion object {
