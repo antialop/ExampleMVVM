@@ -2,7 +2,13 @@ package com.example.examplemvvm.model
 
 class QuoteProvider {
     companion object {
-        val quote = listOf<QuoteModel>(
+
+        fun random(): QuoteModel {
+              val position = (0..9).random()
+            return quote[position]/**/
+        }
+
+        private val quote = listOf<QuoteModel>(
             QuoteModel(
                 quote = "It’s not a bug. It’s an undocumented feature!",
                 author = "Anonymous"
