@@ -5,13 +5,13 @@ import com.example.examplemvvm.data.model.QuoteProvider
 import com.example.examplemvvm.data.network.QuoteService
 import javax.inject.Inject
 
-class QuoteRespository @Inject constructor(private val api: QuoteService) {
+class QuoteRespository @Inject constructor(private val api: QuoteService, private val quoteProvider: QuoteProvider) {
 
     suspend fun getAllQuotes():List<QuoteModel>{
         //Llamo al back y se recupera las citas
         val response:List<QuoteModel> = api.getQuotes()
         //QuoteProvider funciona como una pequeña base de datos, se le mete la respuesta del servidor
-        QuoteProvider.quotes = response
+        quoteProvider.quotes = response
         return response
     }
 }
