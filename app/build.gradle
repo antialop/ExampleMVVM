@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.example.examplemvvm'
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.examplemvvm"

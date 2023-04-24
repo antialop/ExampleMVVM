@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.examplemvvm.data.database.entities.QuoteEntity
+import retrofit2.http.DELETE
 
 @Dao
 interface QuoteDao {
@@ -14,4 +15,7 @@ interface QuoteDao {
     //insertar misma id replace
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun inserAll(quotes:List<QuoteEntity>)
+
+    @Query("DELETE FROM quote_table")
+    suspend fun deleteAllQuotes()
 }
