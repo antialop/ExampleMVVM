@@ -14,7 +14,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     //Proveer Retrofit
-    //manteneer una unica instancia de Retrofit, asi no se crea mas instancias inecesarias
+    //@Singleton manteneer una unica instancia de Retrofit, asi no se crea mas instancias inecesarias
     // en el caso de que haya varias clases que inyecten Retrofit
     @Singleton
     @Provides
