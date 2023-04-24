@@ -1,6 +1,7 @@
 package com.example.examplemvvm.domain
 
 import com.example.examplemvvm.data.QuoteRespository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 class GetQuotesUseCase @Inject constructor(private val repository:QuoteRespository) {

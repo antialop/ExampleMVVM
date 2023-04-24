@@ -6,15 +6,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.examplemvvm.data.model.QuoteModel
 import com.example.examplemvvm.domain.GetQuotesUseCase
 import com.example.examplemvvm.domain.GetRandomQuoteUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class QuoteViewModel :ViewModel(){
+@HiltViewModel
+class QuoteViewModel @Inject constructor(
+    private var getQuotesUseCase:GetQuotesUseCase,
+    private var getRandomQuotesUseCase:GetRandomQuoteUseCase
+):ViewModel(){
     //quien pone las citas en la interfaz del usuario
     val quoteModel = MutableLiveData<QuoteModel>()
     val isLoading = MutableLiveData<Boolean>()
 
-    var getQuotesUseCase = GetQuotesUseCase()
-    var getRandomQuotesUseCase = GetRandomQuoteUseCase()
+
 
     fun onCreate() {
         viewModelScope.launch {
