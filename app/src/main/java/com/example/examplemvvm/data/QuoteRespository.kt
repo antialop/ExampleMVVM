@@ -3,9 +3,10 @@ package com.example.examplemvvm.data
 import com.example.examplemvvm.data.model.QuoteModel
 import com.example.examplemvvm.data.model.QuoteProvider
 import com.example.examplemvvm.data.network.QuoteService
+import javax.inject.Inject
 
-class QuoteRespository {
-    private val api = QuoteService()
+class QuoteRespository @Inject constructor(private val api: QuoteService) {
+
     suspend fun getAllQuotes():List<QuoteModel>{
         //Llamo al back y se recupera las citas
         val response:List<QuoteModel> = api.getQuotes()
